@@ -19,14 +19,27 @@ export default class ProductDetails {
 
     addProductToCart() {
 
-        let cart = getLocalStorage("so-cart");
+        let cart = getLocalStorage("so-cart") || [];
 
-        if (Array.isArray(cart)) {
- 
-          cart.push(this.product);
+        // check if product is already in the cart
+        let existingProduct = cart.find((item) => item.Id ===this.product.Id);
+
+        if (existingProduct) {
+          //If product exists, increase quantity
+          existingProduct.quantity += 1;
         } else {
-          cart = []; // Initialize as an empty array if it's not one
-          cart.push(this.product);
+          // if not, add new product with quantity property
+          let productToAdd = {
+            Id: this.productId,
+            Brand: this.product.Brand.Name,
+            Image: this.product.Image, 
+            Color: this.product.Colors[0].ColorName,
+            Price: this.product.FinalPrice,
+            Description: this.product.DescriptionHtmlSimple,
+            quantity: 1, //set initial quantity
+          };
+
+          cart.push(productToAdd);
         }
         setLocalStorage("so-cart", cart);
       }
@@ -40,6 +53,14 @@ export default class ProductDetails {
         const productColor = document.getElementById("product-color");
         const productDesc = document.getElementById("product-desc");
         //const addToCartButton = document.getElementById("product-addToCart");
+        
+        
+        // Ensure product details exist before trying to use them.
+        // This helps to prevent errors if the product data is missing or not lloaded.
+        if (!this.product) {
+          console.error("Product details not available.");
+          return;
+        }
 
         productBrand.textContent = this.product.Brand.Name;
         productName.textContent = this.product.NameWithoutBrand;
