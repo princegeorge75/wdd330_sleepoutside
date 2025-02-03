@@ -39,16 +39,14 @@ export default class ProductDetails {
         const productPrice = document.getElementById("product-price");
         const productColor = document.getElementById("product-color");
         const productDesc = document.getElementById("product-desc");
-        //const addToCartButton = document.getElementById("product-addToCart");
 
         productBrand.textContent = this.product.Brand.Name;
         productName.textContent = this.product.NameWithoutBrand;
-        productImg.src = this.product.Image;
+        productImg.src = this.product.Images.PrimaryLarge;
         productImg.alt = this.product.Name;
         productPrice.textContent = this.product.FinalPrice;
         productColor.textContent = this.product.Colors[0].ColorName;
         productDesc.innerHTML  = this.product.DescriptionHtmlSimple;
-        //addToCartButton.setAttribute("data-id", this.product.Id);
         
       }
 
