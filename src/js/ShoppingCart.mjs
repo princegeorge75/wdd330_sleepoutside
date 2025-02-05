@@ -5,10 +5,10 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
     return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
-    <img
-      src="${product.Images.PrimaryMedium}"
-      alt="${product.Name}"
-    />
+      <picture>
+        <source srcset="${product.Images.PrimaryMedium}" media="(min-width: 480px)">
+        <img src="${product.Images.PrimarySmall}" alt="Image of ${product.NameWithoutBrand}">
+      </picture>
   </a>
   <a href="#">
     <h2 class="card__name">${product.Name}</h2>

@@ -9,7 +9,6 @@ const productCategory = getParams("category");
 
 const dataSource = new ProductData(productCategory);
 
-
 const listElement = document.getElementById("product-list");
 const headingElement = document.querySelector(".products");
 

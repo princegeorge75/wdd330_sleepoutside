@@ -35,18 +35,24 @@ export default class ProductDetails {
 
         const productBrand = document.getElementById("product-brand");
         const productName = document.getElementById("product-name");
-        const productImg = document.getElementById("product-image");
-        const productPrice = document.getElementById("product-price");
+        const productImgContainer = document.getElementById("product-image-container");        const productPrice = document.getElementById("product-price");
         const productColor = document.getElementById("product-color");
         const productDesc = document.getElementById("product-desc");
 
         productBrand.textContent = this.product.Brand.Name;
         productName.textContent = this.product.NameWithoutBrand;
-        productImg.src = this.product.Images.PrimaryLarge;
-        productImg.alt = this.product.Name;
         productPrice.textContent = this.product.FinalPrice;
         productColor.textContent = this.product.Colors[0].ColorName;
         productDesc.innerHTML  = this.product.DescriptionHtmlSimple;
+
+        productImgContainer.innerHTML = `
+        <picture>
+          <source srcset="${this.product.Images?.PrimaryExtraLarge}" media="(min-width: 1000px)">
+          <source srcset="${this.product.Images?.PrimaryLarge}" media="(min-width: 568px)">
+          <source srcset="${this.product.Images?.PrimaryMedium}" media="(min-width: 280px)">
+          <img src="${this.product.Images?.PrimarySmall}" alt="${this.product.Name || 'Product Image'}">
+        </picture>
+      `;
         
       }
 
