@@ -28,10 +28,17 @@ export default class ShoppingCart {
     init() {
         // Fetch the product list
         const cartItems = getLocalStorage(this.dataSource) || [];
+        this.calculateListTotal(cartItems);
         this.renderCartContents(cartItems);
+      }
+
+      calculateListTotal(list) {
+        const amounts = list.map((item) => item.FinalPrice);
+        this.total = amounts.reduce((sum, item) => sum + item);
       }
 
       renderCartContents(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list)
+        document.querySelector(".list-total").innerText += ` $${this.total}`;
       }
 }
