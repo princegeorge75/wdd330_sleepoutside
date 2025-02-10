@@ -58,11 +58,22 @@ export default class ProductDetails {
 
       addEventListeners() {
         const addToCartButton = document.getElementById("addToCart");
-        if (addToCartButton) {
-          // Use an arrow function or .bind(this) to maintain the context
-          addToCartButton.addEventListener("click", () => this.addProductToCart());
+        const cartIcon = document.querySelector(".cart svg");
+    
+        if (addToCartButton && cartIcon) {
+            addToCartButton.addEventListener("click", () => {
+                this.addProductToCart();
+    
+                // Add animation class
+                cartIcon.classList.add("animated");
+    
+                // Remove animation class after animation ends
+                setTimeout(() => {
+                    cartIcon.classList.remove("animated");
+                }, 400); // Matches the animation duration
+            });
         } else {
-          console.error("Add to Cart button not found.");
+            console.error("Add to Cart button or cart icon not found.");
         }
-      }
+    }
   }
