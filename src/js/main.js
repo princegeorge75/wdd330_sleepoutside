@@ -1,3 +1,3 @@
 import ProductData from "./ProductData.mjs";
 
-const productDataInstance = new ProductData();
+const dataSource = new ProductData("tents");
