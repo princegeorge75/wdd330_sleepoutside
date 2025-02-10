@@ -287,3 +287,16 @@ footer {
   width: 25%;
   font-size: 1em;
 }
+
+@keyframes cartBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.cart svg.animated {
+  animation: cartBounce 0.4s ease-in-out;
+}
