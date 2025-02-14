@@ -107,7 +107,7 @@ button {
   width: 25px;
 }
 .cart:hover svg {
-  fill: gray;
+  fill: rgb(128, 128, 128);
 }
 
 /* End cart icon styles */
@@ -151,10 +151,15 @@ button {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.hide {
+  display: none;
+}
 .list-footer a:link,
 .list-footer a:visited {
   color: var(--dark-grey);
 }
+
 
 /* Styles for product lists */
 .product-card {

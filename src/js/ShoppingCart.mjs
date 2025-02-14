@@ -34,11 +34,14 @@ export default class ShoppingCart {
 
       calculateListTotal(list) {
         const amounts = list.map((item) => item.FinalPrice);
-        this.total = amounts.reduce((sum, item) => sum + item);
+        this.total = amounts.reduce((sum, item) => sum + item, 0);
       }
 
       renderCartContents(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list)
-        document.querySelector(".list-total").innerText += ` $${this.total}`;
+
+        const totalPriceElement = document.querySelector(".list-total");
+        totalPriceElement.innerText = `Total: $${this.total.toFixed(2)}`;
+        //document.querySelector(".list-total").innerText += ` $${this.total}`;
       }
 }
